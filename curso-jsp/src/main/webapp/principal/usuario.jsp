@@ -44,37 +44,42 @@
 												<div class="card">
 
 													<div class="card-block">
-														<form class="form-material" action="<%= request.getContextPath() %>/ServletUsuarioController" method="post">
+														<form class="form-material" action="<%= request.getContextPath() %>/ServletUsuarioController" method="post" id="formUser">
 															<h4 class="sub-title">Cadastro de usuário</h4>
 															<div class="form-group form-default">
-																<input type="text" name="id" id="id" class="form-control" readonly="readonly"> 
+																<input type="text" name="id" id="id" class="form-control" readonly="readonly" value="${modelLogin.id}"> 
 																<span class="form-bar"></span>
 																<label class="float-label">ID:</label>
 															</div>
 															<div class="form-group form-default">
-																<input type="text" name="nome" id="nome" class="form-control" required="required">
+																<input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off" value="${modelLogin.login}"> 
+																<span class="form-bar"></span>
+																<label class="float-label">Login:</label>
+															</div>
+															<div class="form-group form-default">
+																<input type="text" name="nome" id="nome" class="form-control" required="required" value="${modelLogin.nome}">
 																<label class="float-label">Nome:</label>
 															</div>
 															<div class="form-group form-default">
-																<input type="email" name="email" id="email" class="form-control" required="required" autocomplete="off"> 
+																<input type="email" name="email" id="email" class="form-control" required="required" autocomplete="off" value="${modelLogin.email}">
 																<span class="form-bar"></span>
 																<label class="float-label">E-mail:</label>
 															</div>
 															<div class="form-group form-default">
-																<input type="password" name="senha" id="senha" class="form-control" required="required" autocomplete="off"> 
+																<input type="password" name="senha" id="senha" class="form-control" required="required" autocomplete="off" value="${modelLogin.senha}">
 																<span class="form-bar"></span>
 																<label class="float-label">Senha:</label>
 															</div>
-															<button class="btn btn-primary waves-effect waves-light">Novo</button>
+															<button class="btn btn-primary waves-effect waves-light" onclick="limparForm();">Novo</button>
 															<button class="btn btn-success waves-effect waves-light">Salvar</button>
 															<button class="btn btn-danger waves-effect waves-light">Excluir</button>
 														</form>
-
+														
 													</div>
 												</div>
 											</div>
 										</div>
-
+										<span class="msg">${msg}</span>
 									</div>
 									<!-- Page-body end -->
 								</div>
@@ -89,6 +94,15 @@
 
 
 	<jsp:include page="javascripfile.jsp"></jsp:include>
+	<script type="text/javascript">
+		function limparForm() {
+			var elementos = document.getElementById("formUser").elements;
+			
+			for(p = 0; p < elementos.lenght; p++){
+				elementos[p].value = '';
+			}
+		}
+	</script>
 </body>
 
 </html>
